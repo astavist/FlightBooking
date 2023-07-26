@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        default-label: SametYilmaz
+        git:
+          uri: https://github.com/astavist/FlightBooking-ConfigServer
+  profiles:
+    active: dev
+server:
+  port: 8888
