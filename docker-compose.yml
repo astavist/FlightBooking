@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  flightdb:
+    container_name: flightdb
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_TCP_PORT=3306
+      - VIRTUAL_PORT=3306
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - flightdb:/data/db/flightdb
+volumes:
+  flightdb:
