@@ -26,5 +26,8 @@ public class Seat {
     @JoinColumn(name = "plane_id")
     private Plane plane;
 
+    @ManyToOne
+    @JoinColumn(name = "flight_id")
+    private Flight flight;
 
 }

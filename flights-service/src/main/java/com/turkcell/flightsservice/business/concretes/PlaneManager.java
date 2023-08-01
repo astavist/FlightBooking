@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -41,6 +42,7 @@ public class PlaneManager implements PlaneService {
     @Override
     public CreatePlaneResponse add(CreatePlaneRequest request) {
         var plane = mapper.forResponse().map(request, Plane.class);
+        plane.setId(null);
         repository.save(plane);
         var response = mapper.forResponse().map(plane,CreatePlaneResponse.class);
         return response;

@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -24,14 +22,18 @@ public class Flight {
     private UUID startAirportId;
     private UUID destinationAirportId;
     private Date startDay;
-    private Time startTime;
+    private String startTime;
+    //TODO: simple date formatter
 
 
     @ManyToOne
     @JoinColumn(name = "plane_id")
     private Plane plane;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "airline_id")
-    private List<Airline> airlines;
+    private Airline airline;
+
+    @OneToMany(mappedBy = "flight", cascade = CascadeType.ALL)
+    private List<Seat> seats;
 }

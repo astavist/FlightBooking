@@ -14,6 +14,7 @@ import com.turkcell.flightsservice.repository.FlightRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,6 +43,10 @@ public class FlightManager implements FlightService {
     @Override
     public CreateFlightResponse add(CreateFlightRequest request) {
         var flight = mapper.forResponse().map(request, Flight.class);
+        Date formattedDate = rules.dateFormatter(request.getStartDay());
+        flight.setStartDay(formattedDate);
+
+        flight.setId(null);
         repository.save(flight);
         var response = mapper.forResponse().map(flight, CreateFlightResponse.class);
         return response;

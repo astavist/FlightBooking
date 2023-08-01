@@ -42,6 +42,7 @@ public class SeatManager implements SeatService {
     @Override
     public CreateSeatResponse add(CreateSeatRequest request) {
         var seat = mapper.forResponse().map(request, Seat.class);
+        seat.setId(null);
         repository.save(seat);
         var response = mapper.forResponse().map(seat, CreateSeatResponse.class);
         return response;

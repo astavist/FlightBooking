@@ -43,6 +43,7 @@ public class AirlineManager implements AirlineService {
     @Override
     public CreateAirlineResponse add(CreateAirlineRequest request) {
         var airline = mapper.forResponse().map(request, Airline.class);
+        airline.setId(null);
         repository.save(airline);
         var response = mapper.forResponse().map(airline, CreateAirlineResponse.class);
         return response;

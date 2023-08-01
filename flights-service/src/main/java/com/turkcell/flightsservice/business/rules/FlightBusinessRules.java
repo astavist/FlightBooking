@@ -4,6 +4,11 @@ import com.turkcell.flightsservice.repository.FlightRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 @Service
@@ -14,5 +19,17 @@ public class FlightBusinessRules {
         if (!repository.existsById(id)) {
             throw new RuntimeException("FLIGHT_NOT_EXISTS");
         }
+    }
+
+    public Date dateFormatter(String date) {
+        Date formattedDate = null;
+        try {
+            formattedDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+        }
+        //TODO tek bir date yap
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        return formattedDate;
     }
 }

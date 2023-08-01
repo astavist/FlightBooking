@@ -26,7 +26,7 @@ public class Plane {
     @OneToMany(mappedBy = "plane", cascade = CascadeType.ALL)
     private List<Flight> flights;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "airline_id")
     private Airline airline;
 }

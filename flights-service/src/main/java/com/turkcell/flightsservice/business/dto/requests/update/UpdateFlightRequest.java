@@ -1,6 +1,9 @@
 package com.turkcell.flightsservice.business.dto.requests.update;
 
+import com.turkcell.commonpackage.utils.constants.DateRegex;
+import com.turkcell.commonpackage.utils.constants.TimeRegex;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +24,10 @@ public class UpdateFlightRequest {
     private UUID startAirportId;
     @NotNull
     private UUID destinationAirportId;
+
+    @Pattern(regexp = DateRegex.dateRegex)
     private Date startDay;
+
+    @Pattern(regexp = TimeRegex.timeRegex)
     private Time startTime;
 }

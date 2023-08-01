@@ -42,6 +42,7 @@ public class AirportManager implements AirportService {
     @Override
     public CreateAirportResponse add(CreateAirportRequest request) {
         var airport = mapper.forResponse().map(request, Airport.class);
+        airport.setId(null);
         repository.save(airport);
         var response = mapper.forResponse().map(airport, CreateAirportResponse.class);
         return response;

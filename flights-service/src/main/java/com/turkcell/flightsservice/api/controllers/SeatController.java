@@ -27,8 +27,7 @@ public class SeatController {
     }
 
     @GetMapping("/{id}")
-    public GetSeatResponse getById(UUID id) {
-        return service.getById(id);
+    public GetSeatResponse getById(@PathVariable UUID id) {return service.getById(id);
     }
 
     @PostMapping

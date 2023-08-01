@@ -14,9 +14,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CreatePlaneRequest {
-    @NotBlank
-    private String name;
     @NotNull
     private UUID airlineId;
+    @NotBlank
+    private String name;
 
 }

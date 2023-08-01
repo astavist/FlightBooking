@@ -20,10 +20,10 @@ public class Airline {
     private UUID id;
     private String name;
 
-    @OneToOne(mappedBy = "airline", cascade = CascadeType.ALL)
-    private Plane plane;
+    @OneToMany(mappedBy = "airline", cascade = CascadeType.ALL)
+    private List<Plane> planes;
 
-    @ManyToMany(mappedBy = "airlines", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "airline", cascade = CascadeType.ALL)
     private List<Flight> flights;
 
 
