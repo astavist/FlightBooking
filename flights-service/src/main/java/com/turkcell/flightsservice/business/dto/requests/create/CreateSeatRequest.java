@@ -1,6 +1,7 @@
 package com.turkcell.flightsservice.business.dto.requests.create;
 
 import com.turkcell.flightsservice.entities.enums.ClassName;
+import com.turkcell.flightsservice.entities.enums.SeatStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,6 @@ import java.util.UUID;
 @NoArgsConstructor
 public class CreateSeatRequest {
     private ClassName className;
-    private Boolean status;
+    private SeatStatus status;
     private UUID planeId;
 }

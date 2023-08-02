@@ -24,9 +24,8 @@ public class FlightBusinessRules {
     public Date dateFormatter(String date) {
         Date formattedDate = null;
         try {
-            formattedDate = new SimpleDateFormat("dd/mm/yyyy").parse(date);
+            formattedDate = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(date);
         }
-        //TODO tek bir date yap
         catch (ParseException e){
             e.printStackTrace();
         }

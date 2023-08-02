@@ -1,6 +1,7 @@
 package com.turkcell.flightsservice.business.dto.responses.update;
 
 import com.turkcell.flightsservice.entities.enums.ClassName;
+import com.turkcell.flightsservice.entities.enums.SeatStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,6 @@ import java.util.UUID;
 public class UpdateSeatResponse {
     private UUID id;
     private ClassName className;
-    private Boolean status;
+    private SeatStatus status;
     private UUID planeId;
 }

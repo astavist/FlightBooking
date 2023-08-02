@@ -43,9 +43,8 @@ public class FlightManager implements FlightService {
     @Override
     public CreateFlightResponse add(CreateFlightRequest request) {
         var flight = mapper.forResponse().map(request, Flight.class);
-        Date formattedDate = rules.dateFormatter(request.getStartDay());
-        flight.setStartDay(formattedDate);
-
+        Date formattedDate = rules.dateFormatter(request.getStartDateTime());
+        flight.setStartDateTime(formattedDate);
         flight.setId(null);
         repository.save(flight);
         var response = mapper.forResponse().map(flight, CreateFlightResponse.class);
@@ -56,6 +55,8 @@ public class FlightManager implements FlightService {
     public UpdateFlightResponse update(UUID id, UpdateFlightRequest request) {
         rules.checkIfFlightExist(id);
         var flight = mapper.forResponse().map(request, Flight.class);
+        Date formattedDate = rules.dateFormatter(request.getStartDateTime().toString());
+        flight.setStartDateTime(formattedDate);
         flight.setId(id);
         repository.save(flight);
         var response = mapper.forResponse().map(flight, UpdateFlightResponse.class);

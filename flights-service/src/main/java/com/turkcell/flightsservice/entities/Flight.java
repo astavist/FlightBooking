@@ -21,9 +21,7 @@ public class Flight {
     private UUID id;
     private UUID startAirportId;
     private UUID destinationAirportId;
-    private Date startDay;
-    private String startTime;
-    //TODO: simple date formatter
+    private Date startDateTime;
 
 
     @ManyToOne

@@ -1,6 +1,7 @@
 package com.turkcell.flightsservice.entities;
 
 import com.turkcell.flightsservice.entities.enums.ClassName;
+import com.turkcell.flightsservice.entities.enums.SeatStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,7 +21,7 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private ClassName className;
-    private Boolean status;
+    private SeatStatus status;
 
     @ManyToOne
     @JoinColumn(name = "plane_id")

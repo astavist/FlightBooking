@@ -18,6 +18,5 @@ public class UpdateFlightResponse {
     private UUID planeId;
     private UUID startAirportId;
     private UUID destinationAirportId;
-    private Date startDay;
-    private Time startTime;
+    private Date startDateTime;
 }
