@@ -1,19 +1,20 @@
-package com.turkcell.userservice.business.dto.requests;
+package com.turkcell.userservice.business.dto.responses;
 
 import com.turkcell.userservice.entities.enums.Gender;
 import com.turkcell.userservice.entities.enums.Role;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateUserRequest {
+public class GetAllUsersResponse {
+    private UUID id;
     private String username;
     private String password;
     private String email;
