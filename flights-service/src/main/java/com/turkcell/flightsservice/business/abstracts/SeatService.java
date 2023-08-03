@@ -1,5 +1,6 @@
 package com.turkcell.flightsservice.business.abstracts;
 
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.flightsservice.business.dto.requests.create.CreateSeatRequest;
 import com.turkcell.flightsservice.business.dto.requests.update.UpdateSeatRequest;
 import com.turkcell.flightsservice.business.dto.responses.create.CreateSeatResponse;
@@ -21,6 +22,7 @@ public interface SeatService {
     CreateSeatResponse add(CreateSeatRequest request);
 
     UpdateSeatResponse update(UUID id, UpdateSeatRequest request);
+    ClientResponse checkSeatIsValid(UUID id);
 
     void delete(UUID id);
 }

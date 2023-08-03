@@ -1,5 +1,6 @@
 package com.turkcell.userservice.business.concretes;
 
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.commonpackage.utils.mapper.ModelMapperService;
 import com.turkcell.userservice.business.abstracts.UserService;
 import com.turkcell.userservice.business.dto.requests.CreateUserRequest;
@@ -13,6 +14,7 @@ import com.turkcell.userservice.entities.User;
 import com.turkcell.userservice.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.UUID;
@@ -56,6 +58,28 @@ public class UserManager implements UserService {
         repository.save(user);
 
         var response = mapper.forResponse().map(user, UpdateUserResponse.class);
+        return response;
+    }
+
+    @Override
+    public ClientResponse checkUserIsValid(String username,String password){
+        var response = new ClientResponse();
+        var user = repository.findByUsername(username);
+        if (repository.existsById(user.getId())){
+            if (user.getPassword()==password){
+                response.setValid(true);
+                response.setMessage("Kullanıcı doğrulandı, parola onaylandı");
+            }
+            else {
+                response.setValid(false);
+                response.setMessage("Kullanıcı doğrulandı, parola onaylanmadı");
+            }
+        }
+        else {
+            response.setValid(false);
+            response.setMessage("Kullanıcı doğrulanamadı");
+        }
+
         return response;
     }
 

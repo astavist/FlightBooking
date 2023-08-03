@@ -1,5 +1,6 @@
 package com.turkcell.userservice.api.controllers;
 
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.userservice.business.abstracts.UserService;
 import com.turkcell.userservice.business.dto.requests.CreateUserRequest;
 import com.turkcell.userservice.business.dto.requests.UpdateUserRequest;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/airports")
+@RequestMapping("/api/users")
 @AllArgsConstructor
 public class UserController {
     private final UserService service;
@@ -38,6 +39,11 @@ public class UserController {
     @PutMapping("/{id}")
     public UpdateUserResponse update(@PathVariable UUID id,@RequestBody UpdateUserRequest request) {
         return service.update(id, request);
+    }
+
+    @GetMapping("/check-user/{id}")
+    public ClientResponse checkUserIsValid(@PathVariable String username,@PathVariable String password){
+        return service.checkUserIsValid(username,password);
     }
 
     @DeleteMapping("/{id}")

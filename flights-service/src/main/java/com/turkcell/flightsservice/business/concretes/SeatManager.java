@@ -1,5 +1,6 @@
 package com.turkcell.flightsservice.business.concretes;
 
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.commonpackage.utils.mapper.ModelMapperService;
 import com.turkcell.flightsservice.business.abstracts.SeatService;
 import com.turkcell.flightsservice.business.dto.requests.create.CreateSeatRequest;
@@ -10,6 +11,7 @@ import com.turkcell.flightsservice.business.dto.responses.getall.GetAllSeatsResp
 import com.turkcell.flightsservice.business.dto.responses.update.UpdateSeatResponse;
 import com.turkcell.flightsservice.business.rules.SeatBusinessRules;
 import com.turkcell.flightsservice.entities.Seat;
+import com.turkcell.flightsservice.entities.enums.SeatStatus;
 import com.turkcell.flightsservice.repository.SeatRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -56,6 +58,21 @@ public class SeatManager implements SeatService {
         repository.save(seat);
 
         var response = mapper.forResponse().map(seat, UpdateSeatResponse.class);
+        return response;
+    }
+
+    @Override
+    public ClientResponse checkSeatIsValid(UUID id) {
+        ClientResponse response = new ClientResponse();
+        Seat seat = mapper.forResponse().map(repository.findById(id),Seat.class);
+        if (seat.getStatus()== SeatStatus.AVAILABLE) {
+            response.setValid(true);
+            response.setMessage("Koltuk doğrulandı:");
+        }
+        else {
+            response.setValid(false);
+            response.setMessage("Koltuk doğrulanamadı:");
+        }
         return response;
     }
 

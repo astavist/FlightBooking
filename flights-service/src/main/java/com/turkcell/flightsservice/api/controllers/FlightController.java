@@ -1,5 +1,6 @@
 package com.turkcell.flightsservice.api.controllers;
 
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.flightsservice.business.abstracts.FlightService;
 import com.turkcell.flightsservice.business.dto.requests.create.CreateFlightRequest;
 import com.turkcell.flightsservice.business.dto.requests.update.UpdateFlightRequest;
@@ -40,6 +41,11 @@ public class FlightController {
     @PutMapping("/{id}")
     public UpdateFlightResponse update(@PathVariable UUID id, @Valid @RequestBody UpdateFlightRequest request) {
         return service.update(id, request);
+    }
+
+    @GetMapping(value = "/check-flight/{id}")
+    public ClientResponse checkFlightIsValid(@PathVariable UUID id){
+        return service.checkFlightIsValid(id);
     }
 
     @DeleteMapping("/{id}")

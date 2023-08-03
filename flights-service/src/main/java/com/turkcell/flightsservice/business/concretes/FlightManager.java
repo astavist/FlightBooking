@@ -1,5 +1,6 @@
 package com.turkcell.flightsservice.business.concretes;
 
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.commonpackage.utils.mapper.ModelMapperService;
 import com.turkcell.flightsservice.business.abstracts.FlightService;
 import com.turkcell.flightsservice.business.dto.requests.create.CreateFlightRequest;
@@ -60,6 +61,20 @@ public class FlightManager implements FlightService {
         flight.setId(id);
         repository.save(flight);
         var response = mapper.forResponse().map(flight, UpdateFlightResponse.class);
+        return response;
+    }
+
+    @Override
+    public ClientResponse checkFlightIsValid(UUID id) {
+        ClientResponse response = new ClientResponse();
+        if (repository.existsById(id)){
+            response.setValid(true);
+            response.setMessage("Uçuş Doğrulandı");
+        }
+        else {
+            response.setValid(false);
+            response.setMessage("Uçuş Doğrulanamadı");
+        }
         return response;
     }
 

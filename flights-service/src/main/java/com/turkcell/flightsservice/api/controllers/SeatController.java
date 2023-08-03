@@ -1,5 +1,6 @@
 package com.turkcell.flightsservice.api.controllers;
 
+import com.turkcell.commonpackage.utils.dto.ClientResponse;
 import com.turkcell.flightsservice.business.abstracts.SeatService;
 import com.turkcell.flightsservice.business.dto.requests.create.CreateSeatRequest;
 import com.turkcell.flightsservice.business.dto.requests.update.UpdateSeatRequest;
@@ -39,6 +40,11 @@ public class SeatController {
     public UpdateSeatResponse update(@PathVariable UUID id,@Valid @RequestBody UpdateSeatRequest request){
         return service.update(id,request);
     }
+    @GetMapping(value = "/check-seat/{id}")
+    public ClientResponse checkSeatIsValid(@PathVariable UUID id){
+        return service.checkSeatIsValid(id);
+    }
+
 
     @DeleteMapping("/{id}")
     void delete(UUID id) {
