@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.UUID;
 
-@FeignClient(name = "flight-service")
+@FeignClient(name = "flight-booking-service")
 public interface BookingFlightClient {
     @GetMapping(value = "/api/flights/check-flight/{id}")
     ClientResponse checkFlightIsValid(@PathVariable UUID id);

@@ -77,6 +77,20 @@ public class SeatManager implements SeatService {
     }
 
     @Override
+    public void changeSeatStatus(UUID id) {
+        rules.checkIfSeatExists(id);
+        Seat seat = mapper.forResponse().map(repository.findById(id),Seat.class);
+        seat.setId(id);
+        if (seat.getStatus()==SeatStatus.AVAILABLE){
+            seat.setStatus(SeatStatus.BOOKED);
+        }
+        else {
+            seat.setStatus(SeatStatus.AVAILABLE);
+        }
+        repository.save(seat);
+    }
+
+    @Override
     public void delete(UUID id) {
         rules.checkIfSeatExists(id);
         repository.deleteById(id);

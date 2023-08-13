@@ -23,6 +23,6 @@ public interface SeatService {
 
     UpdateSeatResponse update(UUID id, UpdateSeatRequest request);
     ClientResponse checkSeatIsValid(UUID id);
-
+    void changeSeatStatus(UUID id);
     void delete(UUID id);
 }
