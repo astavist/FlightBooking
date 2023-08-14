@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class BookingManager implements BookingService {
     private final BookingRepository repository;
     private final ModelMapperService mapper;
